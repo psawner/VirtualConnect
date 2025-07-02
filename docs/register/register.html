@@ -1,0 +1,33 @@
+<!-- client/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - VirtualConnect</title>
+  <link rel="stylesheet" href="register.css" />
+</head>
+<body>
+  <div id="container">
+    <div class="login-container">
+      <h2>Register</h2>
+      <form id="registerForm" autocomplete="off">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" autocomplete="new-password"  required />
+        <select name="role">
+          <option value="host">Host</option>
+          <option value="participant" selected>Participant</option>
+        </select>
+
+        
+        <button type="submit" id="registerBtn">Register</button>
+
+      </form>
+      <p id="registerMessage"></p>
+    </div>
+  </div>
+
+  <script src="register.js"></script>
+</body>
+</html>

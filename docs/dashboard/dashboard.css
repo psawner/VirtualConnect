@@ -1,0 +1,514 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Sidebar */
+  /* Sidebar default (hidden to the left) */
+.sidebar {
+    width: 250px;
+    background-color: #1f2937;
+    color: #fff;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.3s ease;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+  
+    /* Initially hide the sidebar with translate */
+    transform: translateX(-100%);
+  }
+  
+  /* When .sidebar is visible (toggled on) */
+  .sidebar.visible {
+    transform: translateX(0);
+  }
+  
+  .sidebar button {
+    background: none;
+    border: none;
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .sidebar button:hover {
+    background-color: #374151;
+    border-radius: 5px;
+  }
+
+  /* Main Content */
+  .main {
+    flex: 1;
+    margin-left: 0;
+    padding: 30px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* When sidebar is visible, shift main content */
+  .main.shifted {
+    margin-left: 250px;
+  }
+  
+  .header{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    display: none;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .section.active {
+    display: block;
+  }
+
+  form input, form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f3f4f6;
+  }
+
+  #conferenceTable tr:hover {
+    background-color: #f0f8ff; /* Light blue shade */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #4CAF50;
+    object-fit: cover;
+  }
+  
+  .toggle-sidebar {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #1f2937;
+    transition: transform 0.3s ease;
+  }
+  .hidden{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  #icon i{
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  #text h1{
+    font-size: 1.6rem;
+}
+
+#wrap{
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
+  gap:15px;
+}
+
+
+
+
+
+
+
+#notification i {
+  font-size: 1.6rem;
+  color: #1f0658;
+}
+
+.notification-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.notification-panel {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  width: 300px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  z-index: 100;
+  max-height: 400px;
+  overflow-y: auto;
+  display: none;
+}
+
+.notification-panel.show {
+  display: block;
+}
+
+.notification-panel h4 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: #1f0658;
+}
+
+.notification-panel hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+.notification-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-panel li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.notification-panel li button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.notification-panel li button:hover {
+  background-color: #0056b3;
+}
+
+.notification-item {
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.notification-item:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transform: translateX(2px);
+}
+
+.joined-section,
+.upcoming-section {
+  margin-bottom: 10px;
+}
+
+#notificationBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: none; /* Hidden by default; shown via JS */
+  font-weight: bold;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  z-index: 110;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ✖ Cancel Icon Inside Notification Panel */
+.notification-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 1.2rem;
+  color: #000000;
+  cursor: pointer;
+  z-index: 120;
+}
+
+.notification-close:hover {
+  color: #000;
+}
+
+
+
+  @media screen and (max-width:600px){
+    #text h1{
+        font-size: 1.2rem;
+    }
+    #create h2{
+        font-size: 1.1rem;
+    }
+    #written h2{
+        font-size: 1.2rem;
+    }
+    .sidebar button{
+        font-size: 0.78rem;
+        padding: 5px;
+        gap:5px;
+    }
+    #view h2{
+        font-size: 1.1rem;
+    }
+    #profile h2{
+        font-size: 1.1rem;
+    }
+    #profile p{
+        font-size: 0.79rem;
+    }
+    .toggle-sidebar{
+        font-size: 1.2rem;
+    }
+    .profile-pic {
+        width: 25px;
+        height: 25px;
+        
+    }
+    #notification i{
+      font-size: 1.2rem;
+      
+    }
+  }
+
+  @media screen and (max-width:400px){
+    .sidebar {
+        width: 100%;
+      }
+    
+      /* Don't shift main content */
+      .main.shifted {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      #text h1{
+        display: none;
+    }
+  }
+  
+  @media screen and (max-width:400px){
+    .notification-panel {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: 94%;
+        
+        
+      }
+      
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  #joinForm input, #joinForm button {
+    margin: 8px 0;
+  }
+  
+  #joinMessage {
+    margin-top: 10px;
+    color: green;
+  }
+  
+  #participantsTable td {
+    font-size: 0.95rem;
+  }
+  
+  #manage input{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  #manage button{
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  #joinConferenceForm button{
+    cursor: pointer;
+  }
+
+
+  /* Preview/Edit Card Container */
+.conference-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Title and Info Sections */
+.conference-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.conference-info {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* Button Group */
+.card-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.card-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Button Colors */
+.card-buttons button:nth-child(1) {
+  background-color: #007bff;
+  color: white;
+}
+.card-buttons button:nth-child(1):hover {
+  background-color: #0056b3;
+}
+
+.card-buttons button:nth-child(2) {
+  background-color: #dc3545;
+  color: white;
+}
+.card-buttons button:nth-child(2):hover {
+  background-color: #a71d2a;
+}
+
+.card-buttons button:nth-child(3) {
+  background-color: #28a745;
+  color: white;
+}
+.card-buttons button:nth-child(3):hover {
+  background-color: #1e7e34;
+}
+
+/* Form Inputs (Edit Mode) */
+.conference-card input[type="text"],
+.conference-card input[type="datetime-local"],
+.conference-card input[type="number"],
+.conference-card textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

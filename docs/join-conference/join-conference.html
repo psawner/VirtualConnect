@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="join-conference.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+
+</head>
+<body>
+
+
+  <header class="header-bar">
+    <!-- Admin Panel Toggle Button -->
+    <button id="adminToggleBtn" class="admin-toggle">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  
+    <h2 class="header-title">Join Conference</h2>
+  
+    <div class="header-right">
+      <div class="theme-box" id="box">
+        <button id="themeToggle" title="Toggle Theme">
+          <i class="fa-solid fa-repeat"></i>
+        </button>
+      </div>
+      <div class="user-profile" id="userProfile">
+        <img src="https://www.pngmart.com/files/23/Profile-PNG-Photo.png" id="profilePic" />
+        <div class="profile-dropdown" id="profileDropdown">
+          <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
+          <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+          <p><strong>Role:</strong> <span id="profileRole">Loading...</span></p>
+          <hr />
+          <button id="logoutBtn">Logout</button>
+        </div>
+      </div>
+      
+  </header>
+  
+
+
+
+  <div class="main-wrapper">
+<div class="main-content">
+<!-- Left: Videos -->
+<div class="video-wrapper">
+  <div class="video-container">
+    <video id="localVideo" autoplay muted playsinline></video>
+    <p class="video-label" id="localName">You</p>
+  </div>
+  <div id="remoteVideos" class="video-grid"></div>
+  <div id="videoGridContainer"> <!-- your video grid wrapper --> </div>
+</div>
+
+
+
+<div id="connectionStatus">Connecting...</div>
+
+
+
+<!-- Right: Sidebar -->
+<div class="right-sidebar">
+  <div class="participants-container">
+    <h3>Participants</h3>
+    <ul id="participantsList"></ul>
+  </div>
+
+  <div class="chat-container">
+    <div id="chatBox" class="chat-box"></div>
+    <form id="chatForm" enctype="multipart/form-data">
+      <input type="text" id="chatInput" placeholder="Type your message..." required />
+      <input type="file" id="fileInput" />
+      <emoji-picker id="emojiPicker" style="display:none; position:absolute; bottom:60px; right:20px;"></emoji-picker>
+      <button id="emojiBtn" type="button"><i class="fa-regular fa-face-smile"></i></button>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+</div>
+
+
+<div class="controls">
+  <button id="startCall"><i class="fa-solid fa-video"></i> <span class="btn-text">Start Call</span></button>
+  <button id="joinCall" style="display: none;"><i class="fa-solid fa-hand-point-right"></i> <span class="btn-text">Join</span> </button>
+  <button id="leaveCall" style="display: none;"><i class="fa-solid fa-hand-point-left"></i> <span class="btn-text">Leave</span></button>
+  <button id="fullscreenBtn" style="display: none;"><i class="fa-solid fa-maximize"></i> <span class="btn-text">Fullscreen</span></button>
+
+
+  <button id="startRecording" style="display:none;"><i class="fa-regular fa-circle-dot"></i> <span class="btn-text">Recording</span></button>
+  <button id="stopRecording" style="display:none;" disabled><i class="fa-regular fa-circle-xmark"></i> <span class="btn-text">Recording</span></button>
+  <a id="downloadLink" style="display:none;" download="recording.webm"><i class="fa-solid fa-download"></i> <span class="btn-text">Recording</span></a>
+
+
+  <button id="muteAudio">
+    <i id="muteIcon" class="fa-solid fa-microphone-slash"></i>
+    <span class="btn-text" id="muteText">Mute</span>
+  </button>
+  
+  <button id="toggleVideo">
+    <i id="videoIcon" class="fa-solid fa-eye-slash"></i>
+    <span class="btn-text" id="videoText">Hide Video</span>
+  </button>
+  
+  <button id="screenShareBtn"><i class="fa-solid fa-desktop"></i> <span class="btn-text">Share Screen</span></button>
+
+  <button id="raiseHandBtn"><i class="fa-solid fa-hand"></i> <span class="btn-text">Raise Hand</span></button>
+
+  <button id="endCall"><i class="fa-solid fa-phone-slash"></i> <span class="btn-text">End Call</span></button>
+</div>
+
+
+
+
+<p id="statusMsg">Click "Start Call" to begin</p>
+<p id="callTimer" style="font-weight:bold; color:#333;"></p>
+
+
+
+<!-- Sidebar Admin Panel -->
+<div id="adminSidebar" class="admin-sidebar-panel"style="display: none;">
+  <div class="admin-sidebar-top">
+    <i id="closeSidebarBtn" class="fa-solid fa-xmark sidebar-close-btn"></i>
+    <h3 class="admin-sidebar-title">Admin Controls</h3>
+    
+  </div>
+  <button id="lockConferenceBtn" class="control-btn"><i class="fa-solid fa-user-lock"></i> Lock Conference</button>
+  <button id="endCallForAllBtn" class="control-btn"><i class="fa-solid fa-phone-slash"></i> End Call for All</button>
+  <div id="participantsAdminList"></div>
+</div>
+
+
+
+<div id="notificationContainer" style="position:fixed; top:20px; left:50%; transform:translateX(-50%); z-index:1003;"></div>
+</div>
+    
+
+  <audio id="notifySound" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3" preload="auto"></audio>
+
+    <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+    <script src="join-conference.js"></script>
+</body>
+</html>
