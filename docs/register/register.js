@@ -52,7 +52,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
   registerBtn.innerHTML = `<span class="button-spinner"></span>`;
 
   try {
-    const res = await fetch('http://localhost:5000/api/auth/register', {
+    const res = await fetch('https://virtualbackend-fmsl.onrender.com/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
