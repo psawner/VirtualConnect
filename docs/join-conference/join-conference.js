@@ -21,7 +21,7 @@ const remoteStreams = {};   // Map of socketId => MediaStream
 async function getLoggedInUser() {
   if (currentUser) return currentUser;
 
-  const res = await fetch("http://localhost:5000/api/auth/me", {
+  const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/me", {
     credentials: "include"
   });
 
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", async () => {
       try {
-        await fetch("http://localhost:5000/api/auth/logout", {
+        await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/logout", {
           method: "POST",
           credentials: "include"
         });
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const socket = io("http://localhost:5000", {
+const socket = io("https://virtualbackend-fmsl.onrender.com", {
   withCredentials: true
 });
 
@@ -111,7 +111,7 @@ let email = null; // store user email globally
 
 window.onload = async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/auth/me", {
+    const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/me", {
       credentials: "include"
     });
 
@@ -1043,7 +1043,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let isHost = false; // default
 window.addEventListener("load", async () => {
   try {
-    const res = await fetch("http://localhost:5000/api/auth/me", {
+    const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/me", {
       credentials: "include"
     });
 
