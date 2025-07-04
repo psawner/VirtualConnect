@@ -425,7 +425,7 @@ btn2.addEventListener('click', () => {
               clearInterval(countdownTimer);
               joinMessage.innerText = "✅ Conference has started! Redirecting...";
               setTimeout(() => {
-                window.location.href = `/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
+                window.location.href = `/VirtualConnect/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
               }, 1000);
               return;
             }
@@ -443,7 +443,7 @@ btn2.addEventListener('click', () => {
         // If ongoing
         joinMessage.innerText = "Joining... Redirecting...";
         setTimeout(() => {
-          window.location.href = `/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
+          window.location.href = `/VirtualConnect/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
         }, 1000);
         return;
       }
@@ -462,7 +462,7 @@ btn2.addEventListener('click', () => {
   
         joinMessage.innerText = "✅ Host joining... Redirecting";
         setTimeout(() => {
-          window.location.href = `/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
+          window.location.href = `/VirtualConnect/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
         }, 1000);
         return;
       }
@@ -475,7 +475,7 @@ btn2.addEventListener('click', () => {
       if (alreadyJoined) {
         joinMessage.innerText = "Already joined. Redirecting...";
         setTimeout(() => {
-          window.location.href = `/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
+          window.location.href = `/VirtualConnect/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
         }, 1000);
         return;
       }
@@ -499,7 +499,7 @@ btn2.addEventListener('click', () => {
       if (response.ok) {
         joinMessage.innerText = "Joined! Redirecting...";
         setTimeout(() => {
-          window.location.href = `/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
+          window.location.href = `/VirtualConnect/join-conference/join-conference.html?conferenceId=${encodeURIComponent(data.conferenceId)}&email=${encodeURIComponent(user.email)}`;
         }, 1000);
       } else {
         const error = await response.json();
