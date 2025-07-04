@@ -2,7 +2,7 @@ let countdownTimer = null;
 let activeConferenceId = null;
 
 async function getLoggedInUser() {
-  const res = await fetch("http://localhost:5000/api/auth/me", {
+  const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/me", {
     
     credentials: "include" // ✅ Send session cookie
   });
@@ -53,7 +53,7 @@ function showSection(id) {
     const tbody = document.getElementById("conferenceTable");
   
     try {
-      const res = await fetch("http://localhost:5000/api/conference/all", {
+      const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/conference/all", {
         credentials: "include"
       });
   
@@ -96,7 +96,7 @@ function showSection(id) {
   
     // ========== 1. Get Logged In User ==========
     try {
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/me", {
         credentials: "include"
       });
   
@@ -142,7 +142,7 @@ function showSection(id) {
       const hostEmail = currentUser.email;
   
       try {
-        const response = await fetch("http://localhost:5000/api/conference/create", {
+        const response = await fetch("https://virtualbackend-fmsl.onrender.com/api/conference/create", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -234,7 +234,7 @@ function showSection(id) {
     };
   
     try {
-      const res = await fetch(`http://localhost:5000/api/conference/${id}`, {
+      const res = await fetch(`https://virtualbackend-fmsl.onrender.com/api/conference/${id}`, {
         method: "PUT",
         credentials: "include", // ✅ Include session cookie
         headers: {
@@ -263,7 +263,7 @@ function showSection(id) {
     if (!confirm("Are you sure you want to delete this conference?")) return;
   
     try {
-      const res = await fetch(`http://localhost:5000/api/conference/${id}`, {
+      const res = await fetch(`https://virtualbackend-fmsl.onrender.com/api/conference/${id}`, {
         method: "DELETE",
         credentials: "include" // ✅ Include session cookie
       });
@@ -297,7 +297,7 @@ function showSection(id) {
 
   async function logout() {
     try {
-      await fetch("http://localhost:5000/api/auth/logout", {
+      await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/logout", {
         method: "POST",
         credentials: "include" // ✅ send session cookie to properly log out
       });
@@ -366,7 +366,7 @@ btn2.addEventListener('click', () => {
 
     try {
       // Fetch logged-in user with session credentials
-      const res = await fetch("http://localhost:5000/api/auth/me", {
+      const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/auth/me", {
         method: "GET",
         credentials: "include"
       });
@@ -395,7 +395,7 @@ btn2.addEventListener('click', () => {
     }
   
     try {
-      const confRes = await fetch(`http://localhost:5000/api/conference/${data.conferenceId}`);
+      const confRes = await fetch(`https://virtualbackend-fmsl.onrender.com/api/conference/${data.conferenceId}`);
       if (!confRes.ok) throw new Error("Conference not found.");
       const conference = await confRes.json();
   
@@ -468,7 +468,7 @@ btn2.addEventListener('click', () => {
       }
   
       // Check if already joined
-      const existingCheck = await fetch(`http://localhost:5000/api/participants/${data.conferenceId}`);
+      const existingCheck = await fetch(`https://virtualbackend-fmsl.onrender.com/api/participants/${data.conferenceId}`);
       const participants = await existingCheck.json();
       const alreadyJoined = participants.some(p => p.email === user.email);
   
@@ -481,7 +481,7 @@ btn2.addEventListener('click', () => {
       }
   
       // Register as participant
-      const response = await fetch("http://localhost:5000/api/participants", {
+      const response = await fetch("https://virtualbackend-fmsl.onrender.com/api/participants", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -524,7 +524,7 @@ btn2.addEventListener('click', () => {
     if (!conferenceId) return alert("Please enter a Conference ID");
   
     try {
-      const res = await fetch(`http://localhost:5000/api/participants/${conferenceId}`, {
+      const res = await fetch(`https://virtualbackend-fmsl.onrender.com/api/participants/${conferenceId}`, {
         method: "GET",
         credentials: "include" // ✅ Send session cookie
       });
@@ -583,7 +583,7 @@ btn2.addEventListener('click', () => {
 
   async function updateStatus(id, status) {
     try {
-      const res = await fetch(`http://localhost:5000/api/participants/${id}/status`, {
+      const res = await fetch(`https://virtualbackend-fmsl.onrender.com/api/participants/${id}/status`, {
         method: 'PUT',
         credentials: 'include', // ✅ Send session cookie
         headers: {
@@ -628,7 +628,7 @@ btn2.addEventListener('click', () => {
     }
   
     try {
-      const res = await fetch(`http://localhost:5000/api/participants/${id}`, {
+      const res = await fetch(`https://virtualbackend-fmsl.onrender.com/api/participants/${id}`, {
         method: "PUT",
         credentials: "include", // ✅ Send session cookie
         headers: {
@@ -671,7 +671,7 @@ btn2.addEventListener('click', () => {
     if (!name) return alert("Name cannot be empty");
   
     try {
-      const res = await fetch(`http://localhost:5000/api/participants/${id}`, {
+      const res = await fetch(`https://virtualbackend-fmsl.onrender.com/api/participants/${id}`, {
         method: "PUT",
         credentials: "include", // ✅ Send session cookie
         headers: {
@@ -706,7 +706,7 @@ btn2.addEventListener('click', () => {
     }
   
     try {
-      const res = await fetch("http://localhost:5000/api/participants", {
+      const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/participants", {
         method: "POST",
         credentials: "include", // ✅ Send session cookie
         headers: {
@@ -740,7 +740,7 @@ btn2.addEventListener('click', () => {
  // ===================== REMOVE PARTICIPANT =====================
 async function removeParticipant(id) {
   try {
-    const res = await fetch(`http://localhost:5000/api/participants/${id}`, {
+    const res = await fetch(`https://virtualbackend-fmsl.onrender.com/api/participants/${id}`, {
       method: "DELETE",
       credentials: "include" // ✅ Send session cookie
     });
@@ -777,7 +777,7 @@ async function showSection(id) {
 // ===================== CHECK HOST ACCESS =====================
 async function checkHostAccess() {
   try {
-    const res = await fetch('http://localhost:5000/api/auth/me', {
+    const res = await fetch('https://virtualbackend-fmsl.onrender.com/api/auth/me', {
       credentials: "include" // ✅ Send session cookie
     });
 
@@ -827,7 +827,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function updateBadge() {
     try {
-      const res = await fetch("http://localhost:5000/api/notifications/unseen-upcoming", {
+      const res = await fetch("https://virtualbackend-fmsl.onrender.com/api/notifications/unseen-upcoming", {
         credentials: "include"
       });
 
@@ -855,7 +855,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadNotifications() {
     try {
       // 1. Fetch unseen notifications
-      const unseenRes = await fetch("http://localhost:5000/api/notifications/unseen-upcoming", {
+      const unseenRes = await fetch("https://virtualbackend-fmsl.onrender.com/api/notifications/unseen-upcoming", {
         credentials: "include"
       });
 
@@ -866,7 +866,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 2. Mark unseen as seen
       if (seenIds.length > 0) {
-        await fetch("http://localhost:5000/api/notifications/mark-seen", {
+        await fetch("https://virtualbackend-fmsl.onrender.com/api/notifications/mark-seen", {
           method: "POST",
           credentials: "include",
           headers: {
@@ -877,7 +877,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // 3. Fetch joined conferences
-      const joinedRes = await fetch("http://localhost:5000/api/participants/my", {
+      const joinedRes = await fetch("https://virtualbackend-fmsl.onrender.com/api/participants/my", {
         credentials: "include"
       });
 
@@ -902,7 +902,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // 4. Fetch all conferences
-      const allRes = await fetch("http://localhost:5000/api/conference/all", {
+      const allRes = await fetch("https://virtualbackend-fmsl.onrender.com/api/conference/all", {
         credentials: "include"
       });
 
