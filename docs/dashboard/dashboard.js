@@ -401,7 +401,7 @@ btn2.addEventListener('click', () => {
   
       const joinMessage = document.getElementById("joinMessage");
       const now = new Date();
-      const confStartTime = new Date(conference.datetime);
+      const confStartTime = new Date(conference.datetime + 'Z');
       const confEndTime = new Date(confStartTime.getTime() + conference.duration * 60000);
   
       // Participant logic
