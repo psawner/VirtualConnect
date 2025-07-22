@@ -67,7 +67,7 @@ function showSection(id) {
           const row = document.createElement("tr");
           row.innerHTML = `
             <td>${conf.title}</td>
-            <td>${new Date(conf.datetime).toLocaleString()}</td>
+            <td>${new Date(conf.datetime).toLocaleDateString('en-GB')} ${new Date(conf.datetime).toLocaleTimeString()}</td>
             <td>${conf.duration} minutes</td>
             <td>${conf.description}</td>
           `;
